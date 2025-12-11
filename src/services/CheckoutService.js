@@ -21,6 +21,7 @@ class CheckoutService {
     if (!product) {
       throw new Error('Product not found');
     }
+    console.log(`[CheckoutService] ProductId: ${productId}, Current Stock: ${product.stock}, Requested: ${quantity}`);
     if (product.stock < quantity) {
       throw new Error(`Insufficient stock. Available: ${product.stock}`);
     }
@@ -40,7 +41,7 @@ class CheckoutService {
 
     for (const item of items) {
       const product = this.validateProduct(item.productId, item.quantity);
-      
+
       const itemTotal = product.price * item.quantity;
       totalAmount += itemTotal;
 
